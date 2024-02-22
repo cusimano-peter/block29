@@ -24,4 +24,4 @@ export async function deletePlayer(id) {
       throw new Error('Failed to delete player');
     }
   }
-  
+    

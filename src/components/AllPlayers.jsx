@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { fetchPlayers, deletePlayer } from '../API';
+import { fetchPlayers } from '../API';
 
 function AllPlayers() {
   const [players, setPlayers] = useState([]);
@@ -20,15 +19,6 @@ function AllPlayers() {
     getPlayers();
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      await deletePlayer(id);
-      setPlayers(players.filter(player => player.id !== id));
-    } catch (error) {
-      console.error('Error deleting player:', error);
-    }
-  };
-
   return (
     <div>
       <h1>All Players</h1>
@@ -38,11 +28,9 @@ function AllPlayers() {
         <div>
           {players.map((player) => (
             <div key={player.id}>
-              <h4>{player.name}</h4>
-              <p>Owner: {player.owner}</p>
-              <p>Team: {player.team}</p>
-              <Link to={`/players/${player.id}`}>See Details</Link>
-              <button onClick={() => handleDelete(player.id)}>Delete</button>
+              <h2>{player.name}</h2>
+              <p>Breed: {player.breed}</p>
+              <p>Status: {player.status}</p>
             </div>
           ))}
         </div>
